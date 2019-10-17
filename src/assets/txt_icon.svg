@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
+<g id="_x5F_GRID" display="none">
+	<g display="inline">
+		<g>
+			
+				<rect x="9" y="-9" transform="matrix(6.123234e-17 -1 1 6.123234e-17 9 11)" opacity="0.2" fill="#FF00FF" width="2" height="20"/>
+			
+				<rect x="9.5" y="-9.5" transform="matrix(6.123234e-17 -1 1 6.123234e-17 9.5 10.5)" opacity="0.3" fill="#FF00FF" width="1" height="20"/>
+		</g>
+		<g>
+			
+				<rect x="9" y="9" transform="matrix(-1.836970e-16 1 -1 -1.836970e-16 29 9)" opacity="0.2" fill="#FF00FF" width="2" height="20"/>
+			
+				<rect x="9.5" y="9.5" transform="matrix(-1.836970e-16 1 -1 -1.836970e-16 29.5 9.5)" opacity="0.3" fill="#FF00FF" width="1" height="20"/>
+		</g>
+		<g>
+			<rect transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 2 20)" opacity="0.2" fill="#FF00FF" width="2" height="20"/>
+			<rect transform="matrix(-1 -1.224647e-16 1.224647e-16 -1 1 20)" opacity="0.3" fill="#FF00FF" width="1" height="20"/>
+		</g>
+		<g>
+			<rect x="18" opacity="0.2" fill="#FF00FF" width="2" height="20"/>
+			<rect x="19" opacity="0.3" fill="#FF00FF" width="1" height="20"/>
+		</g>
+	</g>
+</g>
+<g id="ICONS">
+	<g>
+		<path fill="#FFFFFF" stroke="#979593" stroke-miterlimit="10" d="M12.2929,1.5H4C3.7239,1.5,3.5,1.7239,3.5,2v16
+			c0,0.2761,0.2239,0.5,0.5,0.5h12c0.2761,0,0.5-0.2239,0.5-0.5V5.7071c0-0.1326-0.0527-0.2598-0.1464-0.3536l-3.7071-3.7071
+			C12.5527,1.5527,12.4255,1.5,12.2929,1.5z"/>
+		<path fill="none" stroke="#979593" stroke-miterlimit="10" d="M12.5,1.5v4c0,0.5523,0.4477,1,1,1h3"/>
+	</g>
+	<g>
+		<path fill="#BDBBB8" d="M14.5556,15H5.4444C5.1988,15,5,14.7764,5,14.5S5.1988,14,5.4444,14h9.1111C14.8012,14,15,14.2236,15,14.5
+			S14.8012,15,14.5556,15z"/>
+		<path fill="#BDBBB8" d="M14.5556,13H5.4444C5.1988,13,5,12.7764,5,12.5S5.1988,12,5.4444,12h9.1111C14.8012,12,15,12.2236,15,12.5
+			S14.8012,13,14.5556,13z"/>
+		<path fill="#BDBBB8" d="M14.5556,11H5.4444C5.1988,11,5,10.7764,5,10.5S5.1988,10,5.4444,10h9.1111C14.8012,10,15,10.2236,15,10.5
+			S14.8012,11,14.5556,11z"/>
+		<path fill="#BDBBB8" d="M14.5556,9H5.4444C5.1988,9,5,8.7764,5,8.5S5.1988,8,5.4444,8h9.1111C14.8012,8,15,8.2236,15,8.5
+			S14.8012,9,14.5556,9z"/>
+	</g>
+</g>
+<g id="CENTERED_x5F_MARGINS" display="none">
+	<g display="inline">
+		<rect x="15" y="0" opacity="0.3" fill="#00FFFF" width="5" height="20"/>
+		<rect y="0" opacity="0.3" fill="#00FFFF" width="5" height="20"/>
+	</g>
+</g>
+<g id="_x5F_FILE_x5F_CENTER" display="none">
+</g>
+<g id="_x5F_THREE_x5F_HEIGHTS" display="none">
+</g>
+<g id="FOLDER_x5F_INCIDACTORS" display="none">
+</g>
+</svg>
