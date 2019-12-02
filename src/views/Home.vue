@@ -1,26 +1,16 @@
 <template>
-  <section class="contents-wrap-section">
+	<div id="home">
 		<section class="contents-section">
 			<article class="calendar-article">
-				<p class="article-subject">내 일정</p>
-				<ul id="calendarEvents">
-					<!-- <li>
-						<p>제목입니다</p>
-						<p><span>2019-09-25 10:00</span> - <span>2019-09-25 12:00</span></p>
-					</li> -->
-				</ul>
+				<p class="article-subject">Schedule</p>
+				<EventList></EventList>
 			</article>
 			<article class="mail-article">
-				<p class="article-subject">받은 편지함</p>
-				<ul id="mailMessages">
-					<!-- <li>
-						<p class="mail-sender">김상기</p>
-						<p class="mail-subject">금주 배포 항목 취합.</p>
-					</li> -->
-				</ul>
+				<p class="article-subject">Recent Mail</p>
+				<MailMessageList></MailMessageList>
 			</article>
 			<article class="task-article">
-				<p class="article-subject">할일(Teams Task)</p>
+				<p class="article-subject">Tasks</p>
 				<TaskList></TaskList>
 			</article>
 			<article class="drive-article">
@@ -28,43 +18,62 @@
 				<OneDriveList></OneDriveList>
 			</article>
 		</section>
-	</section>
+		<section class="profile-section">
+			<UserProfile></UserProfile>
+		</section>
+	</div>
 </template>
 
 <script>
-import TaskList from "@/components/TaskList";
-import OneDriveList from "@/components/OneDriveList";
+import TaskList from "@/components/TaskList"
+import EventList from "@/components/EventList"
+import OneDriveList from "@/components/OneDriveList"
+import MailMessageList from "@/components/MailMessageList"
+import UserProfile from "@/components/UserProfile"
+import { Utils } from "@/common/utils"
 
 export default {
   name: "home",
   components: {
 	TaskList,
-	OneDriveList
+	EventList,
+	MailMessageList,
+	OneDriveList,
+	UserProfile
   },
   beforeCreate() {
-    // alert(window.location)
-	var clientToken = window.location.href.substring(window.location.href.indexOf("?clientToken=") + "?clientToken=".length)
-    window.localStorage.setItem("clientToken", decodeURIComponent(clientToken))
+	// alert(window.location)
+	// var clientToken = window.location.href.substring(window.location.href.indexOf("?clientToken=") + "?clientToken=".length)
+	// window.localStorage.setItem("clientToken", clientToken)
+	var clientToken = Utils.getCookie("clientToken")
+	console.log(clientToken)
+	this.axios.defaults.headers = {
+		clientToken: clientToken
+	}
+	
+  },
+  methods : {  
+	
   }
 };
 </script>
 <style>
 .contents-section {
 	margin: 80px auto 0 auto;
-    height: 1000px;
-    width: 75%;
+    height: 1350px;
+    width: 90%;
 }
 
 .contents-section article {
   background-color: white;
   border : 1px solid #ccc;
-  width:45%;
+  width:49%;
   padding : 30px 0 0 30px;
   border-radius:10px;
   /* display:inline-block; */
   float:left;
   height:30%;
-  margin:0 3px 3px 0;
+  margin:0 1px 1px 0;
 }
 
 .article-subject {
@@ -93,5 +102,6 @@ export default {
 	font-size:13px;
 	font-weight:500;
 }
+
 
 </style>

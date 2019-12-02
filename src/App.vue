@@ -30,12 +30,6 @@ ul li {
 	margin-top : 10px;
 }
 
-.profile-img {
-	width:100px;
-	height:100px;
-	border-radius:50px;
-}
-
 p {
 	margin:0;
 }
