@@ -26,3 +26,10 @@ export default {
 };
 </script>
 
+<style  scoped>
+.icon {
+	width : 22px;
+	height:22px;
+}
+</style>
+

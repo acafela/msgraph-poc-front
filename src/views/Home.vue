@@ -1,5 +1,8 @@
 <template>
 	<div id="home">
+		<section>
+			<Navigation></Navigation>
+		</section>
 		<section class="contents-section">
 			<article class="calendar-article">
 				<p class="article-subject">Schedule</p>
@@ -18,9 +21,7 @@
 				<OneDriveList></OneDriveList>
 			</article>
 		</section>
-		<section class="profile-section">
-			<UserProfile></UserProfile>
-		</section>
+		
 	</div>
 </template>
 
@@ -30,26 +31,28 @@ import EventList from "@/components/EventList"
 import OneDriveList from "@/components/OneDriveList"
 import MailMessageList from "@/components/MailMessageList"
 import UserProfile from "@/components/UserProfile"
+import Navigation from "@/components/Navigation"
 import { Utils } from "@/common/utils"
 
 export default {
-  name: "home",
+  name: "Home",
   components: {
 	TaskList,
 	EventList,
 	MailMessageList,
 	OneDriveList,
-	UserProfile
+	UserProfile,
+	Navigation
   },
   beforeCreate() {
 	// alert(window.location)
 	// var clientToken = window.location.href.substring(window.location.href.indexOf("?clientToken=") + "?clientToken=".length)
-	// window.localStorage.setItem("clientToken", clientToken)
 	var clientToken = Utils.getCookie("clientToken")
-	console.log(clientToken)
-	this.axios.defaults.headers = {
-		clientToken: clientToken
-	}
+	window.localStorage.setItem("clientToken", clientToken)
+	// console.log(clientToken)
+	// this.axios.defaults.headers = {
+	// 	clientToken: clientToken
+	// }
 	
   },
   methods : {  
@@ -59,7 +62,7 @@ export default {
 </script>
 <style>
 .contents-section {
-	margin: 80px auto 0 auto;
+	margin: 30px auto 0 auto;
     height: 1350px;
     width: 90%;
 }
@@ -68,7 +71,7 @@ export default {
   background-color: white;
   border : 1px solid #ccc;
   width:49%;
-  padding : 30px 0 0 30px;
+  padding : 15px 25px 0 25px;
   border-radius:10px;
   /* display:inline-block; */
   float:left;
@@ -77,7 +80,7 @@ export default {
 }
 
 .article-subject {
-	font-size : 19px;
+	font-size : 21px;
 	font-weight:600
 }
 
@@ -102,6 +105,17 @@ export default {
 	font-size:13px;
 	font-weight:500;
 }
+ul {
+   list-style:none;
+   padding-left:0px;
+}
 
+.contents-section ul li {
+	margin-top : 10px;
+}
+
+p {
+	margin:0;
+}
 
 </style>

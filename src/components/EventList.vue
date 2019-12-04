@@ -22,7 +22,7 @@ export default {
     }
   },
   created() {
-    this.axios.get("/me/calendar/events")
+    this.axios.get("/users/me/calendar/events")
     .then(res => { this.events = res.data })
     .catch(e => { console.log("fail", e) })
   }

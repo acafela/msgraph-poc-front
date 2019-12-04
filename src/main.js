@@ -5,6 +5,7 @@ import ApiService from "./common/api-service"
 import 'expose-loader?$!expose-loader?jQuery!jquery'
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import './common/jscore-custom'
 
 ApiService.init()
 

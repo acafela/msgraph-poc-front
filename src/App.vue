@@ -11,7 +11,7 @@ export default {
 </script>
 
 <style>
-html, body {
+/* html, body {
     padding:0;
     margin:0;
     background-color: #f9f9f9;
@@ -34,8 +34,5 @@ p {
 	margin:0;
 }
 
-.icon {
-	width : 22px;
-	height:22px;
-}
+ */
 </style>

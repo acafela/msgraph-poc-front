@@ -1,15 +1,5 @@
 <template>
-  
-    <!-- <p>
-      <img v-bind:src="imgSrc" alt="profile-img" class="profile-img"/>
-    </p>
-    <p>
-      <span class="glyphicon glyphicon-user" aria-hidden="true"></span><span v-text="user.displayName"></span>
-    </p>
-    <p>
-      <span v-text="user.mail"></span>
-    </p> -->
-    <div>
+    <div class="profile-section">
       <div class="profile-img-sm-box">
         <img v-bind:src="imgSrc" alt="profile-img" class="profile-img-sm" v-on:click="activeProfileCard = !activeProfileCard"/>
       </div>
@@ -21,10 +11,9 @@
           <h5 class="card-title" v-text="user.displayName"/>
           <p class="card-text" v-text="user.mail"/>
           <a href="#" class="card-link">Logout</a>
+        </div>
       </div>
     </div>
-    </div>
-  
 </template>
 
 <script>
@@ -70,14 +59,15 @@ export default {
 	border-radius:50px;
 }
 .profile-img-sm {
-  width:50px;
-	height:50px;
-	border-radius:50px;
+  width:45px;
+	height:45px;
+	border-radius:45px;
 }
 .profile-section {
 	position : absolute;
 	top : 5px;
-	right : 5px;
+	right : 10px;
+  z-index: 10;
 }
 .profile-img-sm-box {
   text-align: right;

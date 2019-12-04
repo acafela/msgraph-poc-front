@@ -19,7 +19,7 @@
 import { API_URL } from "@/common/config"
 
 export default {
-  name: "login",
+  name: "Login",
   data() {
     return { 
       loginId : "dev_team@lsgpoc.onmicrosoft.com"
