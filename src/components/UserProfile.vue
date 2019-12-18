@@ -26,13 +26,12 @@ export default {
     return {
       user : {},
       activeProfileCard: false,
-      imgSrc : API_URL + "/me/photo/content?clientToken=" + Utils.getCookie("clientToken") 
+      imgSrc : API_URL + "/users/me/photo/content?clientToken=" + window.localStorage.getItem("clientToken")
     }
   },
   created() {
     this.axios.get("/me")
     .then(res => { 
-      console.log(res) 
       this.user = res.data
     })
     .catch(e => { console.log("fail", e) })

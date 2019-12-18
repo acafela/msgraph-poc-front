@@ -1,5 +1,6 @@
 <template>
 	<div id="home">
+		<!-- <button type="button" v-on:click="publish()">Test</button> -->
 		<section>
 			<Navigation></Navigation>
 		</section>
@@ -21,7 +22,6 @@
 				<OneDriveList></OneDriveList>
 			</article>
 		</section>
-		
 	</div>
 </template>
 
@@ -32,6 +32,7 @@ import OneDriveList from "@/components/OneDriveList"
 import MailMessageList from "@/components/MailMessageList"
 import UserProfile from "@/components/UserProfile"
 import Navigation from "@/components/Navigation"
+// import Toast from "@/components/Toast"
 import { Utils } from "@/common/utils"
 
 export default {
@@ -44,19 +45,18 @@ export default {
 	UserProfile,
 	Navigation
   },
-  beforeCreate() {
-	// alert(window.location)
-	// var clientToken = window.location.href.substring(window.location.href.indexOf("?clientToken=") + "?clientToken=".length)
-	var clientToken = Utils.getCookie("clientToken")
-	window.localStorage.setItem("clientToken", clientToken)
-	// console.log(clientToken)
-	// this.axios.defaults.headers = {
-	// 	clientToken: clientToken
-	// }
-	
+  data(){
+	  return {
+		  
+	  }
   },
+	mounted(){
+		// this.$subscribe.subscribe()
+	},
   methods : {  
-	
+	publish() {
+		// this.$subscribe.subscribe()
+	}
   }
 };
 </script>
@@ -116,6 +116,28 @@ ul {
 
 p {
 	margin:0;
+}
+.toast-box {
+    max-width: 350px;
+    overflow: hidden;
+    font-size: .875rem;
+    background-color: rgba(255,255,255,.85);
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.1);
+    box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,.1);
+    backdrop-filter: blur(10px);
+    /* opacity: 0; */
+    border-radius: .25rem;
+}
+
+.toast-box .toast-header img{
+	width:30px;
+	height:30px;
+	border-radius:20px;
+}
+
+.toast-box .toast-body{
+	text-align: center;
 }
 
 </style>
