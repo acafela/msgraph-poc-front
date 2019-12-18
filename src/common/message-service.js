@@ -18,7 +18,7 @@ const MessageService = {
         {},
         frame => {
           this.connected = true;
-np
+
           this.publishLogin(user)
 
           this.subscribe()
