@@ -33,7 +33,9 @@ export default {
     
     connectWebSocketAndStoreUser() {
       
-      this.axios.get("/me")
+      this.axios.get("/me"
+      // , { headers: { clientToken: Utils.getCookie("clientToken") } }
+      )
       .then(res => { 
         // console.log(user)
         const user = res.data
@@ -46,19 +48,9 @@ export default {
 
     },
 
-    //TODO
     storeUser(user) {
-
-    },
-
-    disconnect() {
-      if (this.stompClient) {
-        this.stompClient.disconnect();
-      }
-      this.connected = false;
-    },
-    tickleConnection() {
-      this.connected ? this.disconnect() : this.connect();
+      localStorage.setItem("userId", user.userPrincipalName)
+      localStorage.setItem("displayName", user.displayName)
     }
   }
 };
