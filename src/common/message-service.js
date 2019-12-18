@@ -18,7 +18,7 @@ const MessageService = {
         {},
         frame => {
           this.connected = true;
-
+np
           this.publishLogin(user)
 
           this.subscribe()
@@ -33,17 +33,37 @@ const MessageService = {
     },
 
     publishLogin(user){
-        const msg = {
-          userId : user.userPrincipalName,
-          displayName : user.displayName 
-        }
-        this.stompClient.send("/app/login", JSON.stringify(msg), {})
+      const msg = {
+        userId : user.userPrincipalName,
+        displayName : user.displayName,
+        contents : "로그인 했습니다."
+      }
+      this.stompClient.send("/app/login", JSON.stringify(msg), {})
+    },
+
+    publishLogout(){
+      const msg = {
+        userId : localStorage.getItem("userId"),
+        displayName : localStorage.getItem("displayName"),
+        contents : "로그아웃 했습니다."
+      }
+      this.stompClient.send("/app/logout", JSON.stringify(msg), {})
+      this.disconnect()
     },
 
     subscribe() {
       this.stompClient.subscribe("/topic/login", tick => {
 
-        console.log("Subscribe", tick);
+        console.log("Subscribe Login", tick);
+        const body = JSON.parse(tick.body)
+
+        if(localStorage.getItem("clientToken") != encodeURIComponent(body.userId)){
+          this.showToast(body)
+        }
+      })
+      this.stompClient.subscribe("/topic/logout", tick => {
+
+        console.log("Subscribe Logout", tick);
         const body = JSON.parse(tick.body)
 
         if(localStorage.getItem("clientToken") != encodeURIComponent(body.userId)){
@@ -54,9 +74,19 @@ const MessageService = {
 
     showToast(body){
 
+      const toastEle = this.createToastEle(body)
+      document.body.insertAdjacentHTML("beforeend", toastEle)
+
+      setTimeout(() => {
+          const toastArea = document.getElementById("toast-area")
+          toastArea.parentNode.removeChild(toastArea)
+      }, 3000);
+    }, 
+
+    createToastEle(body) {
       const imgSrc = API_URL + "/users/" + body.userId + "/photo/content?clientToken=" + window.localStorage.getItem("clientToken")
 
-      var toastEle = `<div id="toast-area" aria-live="polite" aria-atomic="true" style="position: fixed; top:66px; right:10px; min-height: 200px;">
+      return `<div id="toast-area" aria-live="polite" aria-atomic="true" style="position: fixed; top:66px; right:10px; min-height: 200px;">
                       <div class="toast-box" role="alert" aria-live="assertive" aria-atomic="true">
                           <div class="toast-header">
                               <img src="`
@@ -73,18 +103,24 @@ const MessageService = {
                               <span aria-hidden="true">&times;</span>
                               </button>
                           </div>
-                          <div class="toast-body">
-                              로그인 했습니다.
-                          </div>
+                          <div class="toast-body">`
+                              +
+                              body.contents
+                              +
+                          `</div>
                       </div>
                   </div>`
-                  
-      document.body.insertAdjacentHTML("beforeend", toastEle)
+    },
 
-      setTimeout(() => {
-          const toastArea = document.getElementById("toast-area")
-          toastArea.parentNode.removeChild(toastArea)
-      }, 3000);
+    disconnect() {
+      if (this.stompClient && this.connected) {
+        this.stompClient.disconnect()
+      }
+      this.connected = false;
+    },
+
+    tickleConnection() {
+      this.connected ? this.disconnect() : this.connect()
     }
 };
 
