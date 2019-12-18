@@ -10,7 +10,7 @@
         <div class="card-body">
           <h5 class="card-title" v-text="user.displayName"/>
           <p class="card-text" v-text="user.mail"/>
-          <a href="#" class="card-link">Logout</a>
+          <a href="#" class="card-link" v-on:click="logout()">Logout</a>
         </div>
       </div>
     </div>
@@ -30,11 +30,15 @@ export default {
     }
   },
   created() {
-    this.axios.get("/me")
-    .then(res => { 
-      this.user = res.data
-    })
-    .catch(e => { console.log("fail", e) })
+    this.user.mail = localStorage.getItem("userId")
+    this.user.displayName = localStorage.getItem("displayName")
+  },
+  methods : {
+    logout() {
+      this.$msg.publishLogout()
+      localStorage.removeItem("clientToken")
+      this.$router.push("/")
+    }
   }
 };
 </script>
