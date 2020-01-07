@@ -36,7 +36,7 @@
             <tr v-for="(event,index) in events" :key="index" v-bind:class="{ 'table-primary progess-meeting' : eventStatus(event) == '진행중' }" >
               <td v-text="event.displayStartTime.substring(11) + ' ~ ' + event.displayEndTime.substring(11)"></td>
               <td v-text="event.subject"></td>
-              <td v-text="event.organizerName"></td>
+              <td><span><img class="profile-img-sm" v-bind:src="organizerImg(event.organizerAddress)" ></span>&nbsp;&nbsp;<span v-text="event.organizerName"></span></td>
               <td v-text="eventStatus(event)"></td>
             </tr>
             <tr v-if="noEvents">
@@ -52,6 +52,7 @@
 
 <script>
 import Navigation from "@/components/Navigation"
+import { API_URL } from "@/common/config"
 
 export default {
   
@@ -83,6 +84,10 @@ export default {
     // document.getElementsByClassName("rooms-nav-link")[0].classList.add("active")
   },
   methods : {
+
+    organizerImg (address){
+      return API_URL + "/users/" + address + "/photo/content?clientToken=" + window.localStorage.getItem("clientToken")
+    },
     
     showTimeTable(address, event) {
       
@@ -165,6 +170,11 @@ export default {
 .search-box input {
   /* width : 200px; */
   font-size: 18px;
+}
+.profile-img-sm {
+  width:25px;
+	height:25px;
+	border-radius:25px;
 }
 </style>
 
