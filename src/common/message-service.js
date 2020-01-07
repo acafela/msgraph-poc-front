@@ -35,7 +35,7 @@ const MessageService = {
     publishLogin(user){
       const msg = {
         userId : user.userPrincipalName,
-        displayName : user.displayName,
+        subject : user.displayName,
         contents : "로그인 했습니다."
       }
       this.stompClient.send("/app/login", JSON.stringify(msg), {})
@@ -44,7 +44,7 @@ const MessageService = {
     publishLogout(){
       const msg = {
         userId : localStorage.getItem("userId"),
-        displayName : localStorage.getItem("displayName"),
+        subject : localStorage.getItem("displayName"),
         contents : "로그아웃 했습니다."
       }
       this.stompClient.send("/app/logout", JSON.stringify(msg), {})
@@ -58,7 +58,8 @@ const MessageService = {
         const body = JSON.parse(tick.body)
 
         if(localStorage.getItem("clientToken") != encodeURIComponent(body.userId)){
-          this.showToast(body)
+          const toastEle = this.createLoginoutEle(body)
+          this.showToast(toastEle)
         }
       })
       this.stompClient.subscribe("/topic/logout", tick => {
@@ -67,49 +68,66 @@ const MessageService = {
         const body = JSON.parse(tick.body)
 
         if(localStorage.getItem("clientToken") != encodeURIComponent(body.userId)){
-          this.showToast(body)
+          const toastEle = this.createLoginoutEle(body)
+          this.showToast(toastEle)
         }
+      })
+      this.stompClient.subscribe("/topic/events/" + localStorage.getItem("userId"), tick => {
+
+        console.log("Subscribe Events", tick);
+        const body = JSON.parse(tick.body)
+
+        const toastEle = this.createEventEle(body)
+        this.showToast(toastEle)
+        
       })
     },
 
-    showToast(body){
+    showToast(toastEle){
 
-      const toastEle = this.createToastEle(body)
+      // const toastEle = this.createToastEle(body)
       document.body.insertAdjacentHTML("beforeend", toastEle)
 
       setTimeout(() => {
           const toastArea = document.getElementById("toast-area")
           toastArea.parentNode.removeChild(toastArea)
-      }, 3000);
-    }, 
-
-    createToastEle(body) {
+      }, 8000);
+    },
+    
+    createLoginoutEle(body) {
       const imgSrc = API_URL + "/users/" + body.userId + "/photo/content?clientToken=" + window.localStorage.getItem("clientToken")
+      return this.createToastEle(imgSrc, body.subject, body.contents)
+    },
 
+    createEventEle(body) {
+      return this.createToastEle("", body.subject, body.contents)
+    },
+
+    createToastEle(imgSrc, subject, contents) {
       return `<div id="toast-area" aria-live="polite" aria-atomic="true" style="position: fixed; top:66px; right:10px; min-height: 200px;">
-                      <div class="toast-box" role="alert" aria-live="assertive" aria-atomic="true">
-                          <div class="toast-header">
-                              <img src="`
-                              +
-                              imgSrc
-                              +
-                              `" class="rounded mr-2" >
-                              <strong class="mr-auto">`
-                              +
-                              body.displayName
-                              +
-                              `</strong>
-                              <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                              </button>
-                          </div>
-                          <div class="toast-body">`
-                              +
-                              body.contents
-                              +
-                          `</div>
-                      </div>
-                  </div>`
+        <div class="toast-box" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="`
+                +
+                imgSrc
+                +
+                `" class="rounded mr-2" >
+                <strong class="mr-auto">`
+                +
+                subject
+                +
+                `</strong>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="toast-body">`
+                +
+                contents
+                +
+            `</div>
+        </div>
+    </div>`
     },
 
     disconnect() {
