@@ -104,7 +104,7 @@ export default {
 
       let endDate = new Date(this.searchDate)
       endDate.setDate(endDate.getDate() + 1)
-      let query = "?startDateTime=" + this.searchDate + "T00:00:00&endDateTime=" + endDate.format("yyyy-MM-dd") + "T00:00:00"
+      let query = "?startDateTimeFrom=" + this.searchDate + "T00:00:00&startDateTimeTo=" + endDate.format("yyyy-MM-dd") + "T00:00:00"
       
       this.events = []
       this.axios.get("/users/{id}/calendar/events".replace("{id}", this.roomId) + query)
