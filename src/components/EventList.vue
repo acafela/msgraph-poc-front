@@ -27,7 +27,7 @@ export default {
     const afterWeek = new Date()
     afterWeek.setDate(now.getDate() + 7)
 
-    let query = "?startDateTimeFrom=" + now.format("yyyy-MM-dd") + "T00:00:00.000&startDateTimeTo=" + afterWeek.format("yyyy-MM-dd") + "T00:00:00.000"
+    let query = "?startDateTimeFrom=" + now.format("yyyy-MM-ddTHH:mm:ss.000") + "&startDateTimeTo=" + afterWeek.format("yyyy-MM-dd") + "T00:00:00.000"
     this.axios.get("/users/me/calendar/events" + query)
     .then(res => { this.events = res.data })
     .catch(e => { console.log("fail", e) })
